@@ -80,10 +80,12 @@ Acceptance: Complete. 100% test pass rate across 45 automated tests (`Tests: 45 
 
 ## Phase 2 --- Managed service
 
-### T10 --- Case management (P1)
+### T10 --- Case management (P1) [COMPLETED]
 
 Implement case ownership, tasks, status history, communication log,
-customer visibility boundaries and next-action UX.
+customer visibility boundaries and next-action UX: Built `CaseManagementService`, `Admin\CaseController`, models (`CaseStatusHistory`, `CaseTask`, `CaseCommunication`), migrations, pipeline view, case workspace with dossier & checklist, and strict customer visibility boundary protections.
+Deliverable: Models, migrations, service, controller, views, tests in `tests/Feature/CaseManagementTest.php`, and task record in `docs/tasks/T10-case-management.md`.
+Acceptance: Complete. 100% test pass rate across 54 automated tests (`Tests: 54 passed (230 assertions)`).
 
 ### T11 --- Documents and consent (P1)
 

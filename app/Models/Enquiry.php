@@ -14,6 +14,8 @@ class Enquiry extends Model
     protected $fillable = [
         'reference_code',
         'user_id',
+        'assigned_to_user_id',
+        'assigned_at',
         'opportunity_id',
         'full_name',
         'phone',
@@ -30,12 +32,17 @@ class Enquiry extends Model
         'consent_recorded_at',
         'ip_address',
         'status',
+        'priority',
+        'next_follow_up_at',
+        'stage',
     ];
 
     protected $casts = [
         'consent_given' => 'boolean',
         'consent_recorded_at' => 'datetime',
         'carpet_area_sqft' => 'integer',
+        'assigned_at' => 'datetime',
+        'next_follow_up_at' => 'datetime',
     ];
 
     /**
@@ -47,11 +54,59 @@ class Enquiry extends Model
     }
 
     /**
+     * Assigned case manager (staff member).
+     */
+    public function assignedCaseManager(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_to_user_id');
+    }
+
+    /**
      * Associated target opportunity (if initiated from an opportunity profile).
      */
     public function opportunity(): BelongsTo
     {
         return $this->belongsTo(Opportunity::class);
+    }
+
+    /**
+     * Case status transition audit trail.
+     */
+    public function statusHistories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseStatusHistory::class)->latest();
+    }
+
+    /**
+     * Operational checklist action tasks.
+     */
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseTask::class)->orderBy('is_completed')->orderBy('due_date');
+    }
+
+    /**
+     * Case notes, call logs, and customer updates.
+     */
+    public function communications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseCommunication::class)->latest();
+    }
+
+    /**
+     * Updates explicitly marked as visible to the customer.
+     */
+    public function customerVisibleUpdates(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseCommunication::class)->where('is_customer_visible', true)->latest();
+    }
+
+    /**
+     * Check if case is assigned to a manager.
+     */
+    public function isAssigned(): bool
+    {
+        return ! is_null($this->assigned_to_user_id);
     }
 
     /**

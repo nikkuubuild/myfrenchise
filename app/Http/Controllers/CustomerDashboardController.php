@@ -14,10 +14,16 @@ class CustomerDashboardController extends Controller
     {
         $user = $request->user();
 
-        $enquiries = $user->enquiries()
-            ->with(['opportunity.company', 'opportunity.category'])
-            ->latest()
-            ->get();
+        $enquiryQuery = $user->enquiries()
+            ->with([
+                'opportunity.company',
+                'opportunity.category',
+                'assignedCaseManager',
+                'customerVisibleUpdates.author',
+            ])
+            ->latest();
+
+        $enquiries = $enquiryQuery->get();
 
         $metrics = [
             'total_enquiries' => $enquiries->count(),

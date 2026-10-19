@@ -110,4 +110,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Enquiry::class);
     }
+
+    /**
+     * Cases assigned to this staff member.
+     */
+    public function assignedCases(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Enquiry::class, 'assigned_to_user_id');
+    }
 }

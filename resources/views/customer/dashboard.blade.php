@@ -130,15 +130,32 @@
                                     <span class="font-medium text-ink-primary">{{ ucfirst($enquiry->commercial_space_status) }} ({{ $enquiry->carpet_area_sqft ? $enquiry->carpet_area_sqft.' sqft' : 'Flexible' }})</span>
                                 </div>
                                 <div>
-                                    <span class="text-ink-muted block text-[10px] uppercase tracking-wider">Consent Timestamp</span>
-                                    <span class="font-mono text-ink-secondary">{{ $enquiry->consent_recorded_at?->format('d M Y, H:i') ?? 'N/A' }}</span>
+                                    <span class="text-ink-muted block text-[10px] uppercase tracking-wider">Assigned Specialist</span>
+                                    <span class="font-medium text-accent-green">{{ $enquiry->assignedCaseManager?->name ?? 'Specialist Assignment in Progress' }}</span>
                                 </div>
                             </div>
+
+                            @if($enquiry->customerVisibleUpdates->count() > 0)
+                                <div class="my-3 p-3 bg-accent-green-bg/30 border border-status-verified-border rounded-sm space-y-2">
+                                    <span class="font-semibold text-accent-green uppercase tracking-wider text-[10px] block">
+                                        Milestones &amp; Updates from Your Case Specialist:
+                                    </span>
+                                    @foreach($enquiry->customerVisibleUpdates as $update)
+                                        <div class="text-xs text-ink-secondary">
+                                            <div class="flex items-center justify-between text-[11px] text-ink-muted mb-0.5">
+                                                <strong class="text-ink-primary">{{ $update->subject ?? 'Coordination Update' }}</strong>
+                                                <span class="font-mono text-[10px]">{{ $update->created_at->format('d M Y, H:i') }}</span>
+                                            </div>
+                                            <p class="leading-relaxed">{{ $update->message }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
 
                             <div class="pt-3 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-ink-muted">
                                 <p class="flex items-center gap-1.5">
                                     <span class="text-accent-green font-bold">&bull;</span>
-                                    Next Action: Our assigned case specialist verifies franchisor availability before scheduling preliminary intake.
+                                    Next Action: Our assigned case specialist coordinates territory viability with the franchisor before scheduling preliminary intake.
                                 </p>
                                 @if($enquiry->opportunity)
                                     <a href="{{ route('opportunities.show', $enquiry->opportunity->slug) }}" class="font-semibold text-ink-primary hover:underline">

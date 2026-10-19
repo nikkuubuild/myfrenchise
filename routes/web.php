@@ -75,4 +75,16 @@ Route::middleware('auth')->group(function () {
     // Customer Portal Dashboard
     Route::get('/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('dashboard');
     Route::get('/customer/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('customer.dashboard');
+
+    // Staff Case Management Pipeline & Workspace (Case Manager & Admin only)
+    Route::middleware('role:case_manager,admin')->prefix('admin/cases')->name('admin.cases.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CaseController::class, 'index'])->name('index');
+        Route::get('/{enquiry}', [\App\Http\Controllers\Admin\CaseController::class, 'show'])->name('show');
+        Route::post('/{enquiry}/assign', [\App\Http\Controllers\Admin\CaseController::class, 'assign'])->name('assign');
+        Route::post('/{enquiry}/status', [\App\Http\Controllers\Admin\CaseController::class, 'updateStage'])->name('status');
+        Route::post('/{enquiry}/communications', [\App\Http\Controllers\Admin\CaseController::class, 'storeCommunication'])->name('communications.store');
+        Route::post('/{enquiry}/tasks', [\App\Http\Controllers\Admin\CaseController::class, 'storeTask'])->name('tasks.store');
+        Route::patch('/tasks/{task}/toggle', [\App\Http\Controllers\Admin\CaseController::class, 'toggleTask'])->name('tasks.toggle');
+        Route::post('/{enquiry}/followup', [\App\Http\Controllers\Admin\CaseController::class, 'updateFollowUp'])->name('followup');
+    });
 });
