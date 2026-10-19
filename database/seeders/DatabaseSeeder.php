@@ -162,5 +162,8 @@ class DatabaseSeeder extends Seeder
             $req['opportunity_id'] = $opportunity->id;
             OpportunityRequirement::create($req);
         }
+
+        // 4. Seed Service Packages for Transparent Commerce
+        $this->call(ServicePackageSeeder::class);
     }
 }

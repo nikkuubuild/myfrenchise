@@ -21,6 +21,9 @@
                 </div>
 
                 <div class="flex items-center gap-3">
+                    <x-ui.button href="{{ route('customer.billing.index') }}" variant="secondary" class="!py-2 !px-4 !text-xs">
+                        Billing &amp; Invoices
+                    </x-ui.button>
                     <x-ui.button href="{{ route('assessment.index') }}" variant="secondary" class="!py-2 !px-4 !text-xs">
                         Algorithmic Matcher
                     </x-ui.button>

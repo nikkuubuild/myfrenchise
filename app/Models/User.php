@@ -118,4 +118,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Enquiry::class, 'assigned_to_user_id');
     }
+
+    /**
+     * Commercial orders placed by this user.
+     */
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Audit trail of transactional notifications sent to this user.
+     */
+    public function notificationLogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(NotificationLog::class);
+    }
 }

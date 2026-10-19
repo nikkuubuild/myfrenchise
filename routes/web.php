@@ -114,6 +114,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/data-deletion', [\App\Http\Controllers\Customer\DataSubjectController::class, 'showDeletion'])->name('customer.data-deletion.show');
     Route::post('/customer/data-deletion', [\App\Http\Controllers\Customer\DataSubjectController::class, 'destroy'])->name('customer.data-deletion.destroy');
 
+    // Customer Checkout, Orders & Statutory Tax Invoices
+    Route::post('/checkout/{servicePackage:slug}', [\App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');
+    Route::get('/checkout/{order}/pay', [\App\Http\Controllers\CheckoutController::class, 'pay'])->name('checkout.pay');
+    Route::post('/checkout/{order}/callback', [\App\Http\Controllers\CheckoutController::class, 'callback'])->name('checkout.callback');
+    Route::get('/customer/billing', [\App\Http\Controllers\Customer\BillingController::class, 'index'])->name('customer.billing.index');
+    Route::get('/customer/orders/{order}', [\App\Http\Controllers\Customer\BillingController::class, 'showOrder'])->name('customer.orders.show');
+    Route::get('/customer/invoices/{invoice}', [\App\Http\Controllers\Customer\BillingController::class, 'showInvoice'])->name('customer.invoices.show');
+
     // Staff Grievance Redressal & Fraud Investigation Queue
     Route::middleware('role:case_manager,admin')->prefix('admin/grievances')->name('admin.grievances.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\GrievanceController::class, 'index'])->name('index');
@@ -122,5 +130,19 @@ Route::middleware('auth')->group(function () {
         Route::post('/{grievance}/status', [\App\Http\Controllers\Admin\GrievanceController::class, 'updateStatus'])->name('status');
         Route::post('/{grievance}/resolve', [\App\Http\Controllers\Admin\GrievanceController::class, 'resolve'])->name('resolve');
     });
+
+    // Staff Commerce, Invoicing & Revenue Management
+    Route::middleware('role:case_manager,admin')->prefix('admin/billing')->name('admin.billing.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BillingController::class, 'index'])->name('index');
+        Route::get('/orders/{order}', [\App\Http\Controllers\Admin\BillingController::class, 'show'])->name('show');
+        Route::post('/orders/{order}/refund', [\App\Http\Controllers\Admin\BillingController::class, 'refund'])->name('refund');
+    });
 });
+
+// Public Transparent Checkout Overview
+Route::get('/checkout/{servicePackage:slug}', [\App\Http\Controllers\CheckoutController::class, 'show'])->name('checkout.show');
+
+// Gateway Webhooks (Idempotent & CSRF Exempted)
+Route::post('/webhooks/razorpay', [\App\Http\Controllers\WebhookController::class, 'handleRazorpay'])->name('webhooks.razorpay');
+
 

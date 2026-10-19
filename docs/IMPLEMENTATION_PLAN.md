@@ -108,10 +108,18 @@ Acceptance: Complete. 100% test pass rate across all 71 tests in the application
 
 ## Phase 3 --- Integrations and growth
 
-### T13 --- Notifications and payments (P2)
+### T13 --- Notifications and payments (P2) [COMPLETED]
 
 Select providers; implement delivery outcomes, webhook signature checks,
-idempotency, billing, refunds and transparent fees.
+idempotency, billing, refunds and transparent fees:
+- Implemented transparent Service Package catalogue with itemized pricing, deliverables, exclusions, and cancellation policies.
+- Built server-side HMAC SHA256 payment signature verification (`PaymentService`) enforcing rule that browser redirects alone never mark payments as successful.
+- Implemented automated statutory Indian GST Tax Invoice generation (`InvoiceService`) with intra-state (CGST+SGST) vs inter-state (IGST) tax split and SAC 998311 code.
+- Implemented idempotent gateway webhook processor (`WebhookController`) with signature verification and replay deduplication (`webhook_events`).
+- Built multi-channel transactional notification service (`NotificationService`) logging delivery across email, SMS/DLT, and in-app channels with regulatory DLT template IDs.
+- Built customer checkout, order tracking, and GST invoice download interfaces, and staff billing review queue with authorized refunds.
+Deliverable: Migrations, models, services, controllers, views, seeders, feature tests in `tests/Feature/NotificationAndPaymentTest.php`, and task record in `docs/tasks/T13-notifications-and-payments.md`.
+Acceptance: Complete. 100% test pass rate across all 80 tests in the application suite (`Tests: 80 passed (403 assertions)`).
 
 ### T14 --- SEO and content system (P1)
 
