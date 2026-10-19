@@ -110,6 +110,30 @@ class Enquiry extends Model
     }
 
     /**
+     * Confidential customer and brand documents associated with this case.
+     */
+    public function documents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Document::class)->latest();
+    }
+
+    /**
+     * Auditable customer document-sharing consent records.
+     */
+    public function consents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(DocumentConsent::class)->latest();
+    }
+
+    /**
+     * Active granted consent records for brand submission.
+     */
+    public function activeConsents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(DocumentConsent::class)->where('status', DocumentConsent::STATUS_GRANTED)->latest();
+    }
+
+    /**
      * Generate unique Case Reference Code: FD-CASE-YYYYMM-XXXX
      */
     public static function generateReferenceCode(): string
