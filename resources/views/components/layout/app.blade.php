@@ -31,5 +31,8 @@
 
     <!-- Footer -->
     <x-layout.footer />
+
+    <!-- Cookie & Privacy Consent Banner -->
+    <x-layout.cookie-banner />
 </body>
 </html>

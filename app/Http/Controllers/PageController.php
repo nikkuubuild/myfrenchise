@@ -30,4 +30,9 @@ class PageController extends Controller
     {
         return view('pages.terms');
     }
+
+    public function cookiePolicy(): View
+    {
+        return view('pages.cookie-policy');
+    }
 }

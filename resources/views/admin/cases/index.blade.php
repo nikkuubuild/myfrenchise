@@ -15,6 +15,9 @@
                 </div>
 
                 <div class="flex items-center gap-3">
+                    <a href="{{ route('admin.grievances.index') }}" class="text-xs font-medium px-3 py-1.5 bg-surface-canvas border border-status-rejected-border text-status-rejected-text rounded-sm hover:border-red-700">
+                        Grievance &amp; Fraud Queue
+                    </a>
                     <a href="{{ route('admin.cases.index', ['assigned' => 'unassigned']) }}" class="text-xs font-medium px-3 py-1.5 bg-surface-canvas border border-border-strong rounded-sm text-ink-primary hover:border-ink-primary">
                         Unassigned Intake ({{ $metrics['unassigned'] }})
                     </a>

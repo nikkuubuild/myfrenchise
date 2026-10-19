@@ -94,10 +94,17 @@ consent for document sharing/application submission: Built `DocumentService`, `A
 Deliverable: Models, migrations, service, controllers, views, tests in `tests/Feature/DocumentAndConsentTest.php`, and task record in `docs/tasks/T11-documents-and-consent.md`.
 Acceptance: Complete. 100% test pass rate across 62 automated tests (`Tests: 62 passed (264 assertions)`).
 
-### T12 --- Legal, privacy and cookies (P1)
+### T12 --- Legal, privacy and cookies (P1) [COMPLETED]
 
 Implement counsel-reviewed policies, consent/choice UX, retention
-workflows, grievance/fraud routes and data request handling.
+workflows, grievance/fraud routes and data request handling:
+- Deployed statutory DPDPA 2023 Privacy Notice, Terms of Service & Advisory Disclaimer, and transparent Cookie Policy.
+- Built non-intrusive, accessible cookie consent banner with client-side persistence and zero external advertising trackers.
+- Implemented formal Grievance Redressal & Fraud Reporting system with designated Grievance Officer disclosures (IT Rules 2021), 24h acknowledgment and 15-day resolution SLAs, unique complaint tracking codes (`#FD-GRV-YYYYMM-XXXX`), public tracking lookup, and staff review queue at `/admin/grievances`.
+- Implemented Data Principal Rights: machine-readable JSON personal data export (`/customer/data-export`) and self-service account erasure & anonymization (`/customer/data-deletion`) with password authentication.
+- Implemented automated data retention command `php artisan privacy:scrub-expired`.
+Deliverable: Migrations, models, controllers, views, console command, feature tests in `tests/Feature/LegalPrivacyAndCookiesTest.php`, and task record in `docs/tasks/T12-legal-privacy-and-cookies.md`.
+Acceptance: Complete. 100% test pass rate across all 71 tests in the application suite (`Tests: 71 passed (342 assertions)`).
 
 ## Phase 3 --- Integrations and growth
 

@@ -47,12 +47,18 @@ Route::get('/enquiry/confirmed', [EnquiryController::class, 'confirmed'])->name(
 Route::get('/assessment', [\App\Http\Controllers\AssessmentController::class, 'index'])->name('assessment.index');
 Route::post('/assessment/match', [\App\Http\Controllers\AssessmentController::class, 'match'])->name('assessment.match');
 
+use App\Http\Controllers\GrievanceController;
+
 // Informational, Governance & Policy Pages
 Route::get('/how-it-works', [PageController::class, 'howItWorks'])->name('pages.how-it-works');
 Route::get('/verification-policy', [PageController::class, 'verificationPolicy'])->name('pages.verification-policy');
-Route::get('/grievance-and-fraud', [PageController::class, 'grievance'])->name('pages.grievance');
+Route::get('/grievance-and-fraud', [GrievanceController::class, 'index'])->name('pages.grievance');
+Route::post('/grievance-and-fraud', [GrievanceController::class, 'store'])->middleware('throttle:enquiry')->name('grievance.store');
+Route::get('/grievance-and-fraud/confirmed', [GrievanceController::class, 'confirmed'])->name('grievance.confirmed');
+Route::get('/grievance-and-fraud/track', [GrievanceController::class, 'track'])->name('grievance.track');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('pages.privacy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('pages.terms');
+Route::get('/cookie-policy', [PageController::class, 'cookiePolicy'])->name('pages.cookie-policy');
 
 // Authentication & Account Recovery Routes
 Route::middleware('guest')->group(function () {
@@ -102,4 +108,19 @@ Route::middleware('auth')->group(function () {
         Route::post('/documents/{document}/verify', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'verify'])->name('documents.verify');
         Route::post('/{enquiry}/consents/request', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'requestConsent'])->name('consents.request');
     });
+
+    // Customer Data Subject Rights & Privacy (DPDPA 2023)
+    Route::get('/customer/data-export', [\App\Http\Controllers\Customer\DataSubjectController::class, 'export'])->name('customer.data-export');
+    Route::get('/customer/data-deletion', [\App\Http\Controllers\Customer\DataSubjectController::class, 'showDeletion'])->name('customer.data-deletion.show');
+    Route::post('/customer/data-deletion', [\App\Http\Controllers\Customer\DataSubjectController::class, 'destroy'])->name('customer.data-deletion.destroy');
+
+    // Staff Grievance Redressal & Fraud Investigation Queue
+    Route::middleware('role:case_manager,admin')->prefix('admin/grievances')->name('admin.grievances.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\GrievanceController::class, 'index'])->name('index');
+        Route::get('/{grievance}', [\App\Http\Controllers\Admin\GrievanceController::class, 'show'])->name('show');
+        Route::post('/{grievance}/assign', [\App\Http\Controllers\Admin\GrievanceController::class, 'assign'])->name('assign');
+        Route::post('/{grievance}/status', [\App\Http\Controllers\Admin\GrievanceController::class, 'updateStatus'])->name('status');
+        Route::post('/{grievance}/resolve', [\App\Http\Controllers\Admin\GrievanceController::class, 'resolve'])->name('resolve');
+    });
 });
+

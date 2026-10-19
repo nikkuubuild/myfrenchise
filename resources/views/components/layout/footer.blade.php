@@ -31,6 +31,7 @@
                     <li><a href="{{ url('/grievance-and-fraud') }}" class="hover:text-ink-primary transition-colors">Grievance & Fraud Reporting</a></li>
                     <li><a href="{{ url('/privacy-policy') }}" class="hover:text-ink-primary transition-colors">Privacy Notice</a></li>
                     <li><a href="{{ url('/terms-of-service') }}" class="hover:text-ink-primary transition-colors">Terms of Service</a></li>
+                    <li><a href="{{ route('pages.cookie-policy') }}" class="hover:text-ink-primary transition-colors">Cookie Policy</a></li>
                 </ul>
             </div>
         </div>

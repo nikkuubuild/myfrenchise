@@ -199,6 +199,32 @@
             @endif
         </div>
 
+        <!-- Data Privacy & Principal Rights (DPDPA 2023) -->
+        <div class="bg-surface-canvas p-6 border border-border-subtle rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-1 max-w-xl">
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-mono uppercase bg-accent-green-bg text-status-verified-text px-1.5 py-0.5 rounded-xs border border-status-verified-border">
+                        DPDPA 2023
+                    </span>
+                    <h4 class="font-serif text-sm font-bold text-ink-primary">
+                        Data Principal Rights &amp; Privacy Management
+                    </h4>
+                </div>
+                <p class="text-xs text-ink-muted leading-relaxed">
+                    Under Indian data privacy regulations, you have the right to obtain a machine-readable summary of all personal records we process, or to request permanent account erasure.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="{{ route('customer.data-export') }}" class="px-3.5 py-2 bg-surface-paper border border-border-strong text-ink-primary text-xs font-semibold rounded-xs hover:bg-surface-canvas shadow-xs whitespace-nowrap">
+                    Export Data (JSON)
+                </a>
+                <a href="{{ route('customer.data-deletion.show') }}" class="px-3.5 py-2 bg-red-50 text-red-700 border border-red-200 text-xs font-semibold rounded-xs hover:bg-red-100 whitespace-nowrap">
+                    Manage Erasure
+                </a>
+            </div>
+        </div>
+
         <!-- Managed Platform Policy Notice -->
         <div class="bg-surface-paper/70 p-5 border border-border-subtle rounded-sm text-xs text-ink-muted leading-relaxed space-y-2">
             <h4 class="font-semibold text-ink-secondary uppercase tracking-wider text-[11px]">
