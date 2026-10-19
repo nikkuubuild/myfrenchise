@@ -20,6 +20,7 @@ class CustomerDashboardController extends Controller
                 'opportunity.category',
                 'assignedCaseManager',
                 'customerVisibleUpdates.author',
+                'consents',
             ])
             ->latest();
 

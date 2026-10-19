@@ -76,6 +76,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('dashboard');
     Route::get('/customer/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('customer.dashboard');
 
+    // Customer Case Document Vault & Sharing Consents
+    Route::prefix('customer')->name('customer.cases.')->group(function () {
+        Route::get('/cases/{enquiry}/documents', [\App\Http\Controllers\Customer\CaseDocumentController::class, 'show'])->name('documents.show');
+        Route::post('/cases/{enquiry}/documents', [\App\Http\Controllers\Customer\CaseDocumentController::class, 'store'])->name('documents.store');
+        Route::get('/documents/{document}/download', [\App\Http\Controllers\Customer\CaseDocumentController::class, 'download'])->name('documents.download');
+        Route::post('/consents/{consent}/grant', [\App\Http\Controllers\Customer\CaseDocumentController::class, 'grantConsent'])->name('consents.grant');
+        Route::post('/consents/{consent}/revoke', [\App\Http\Controllers\Customer\CaseDocumentController::class, 'revokeConsent'])->name('consents.revoke');
+    });
+
     // Staff Case Management Pipeline & Workspace (Case Manager & Admin only)
     Route::middleware('role:case_manager,admin')->prefix('admin/cases')->name('admin.cases.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\CaseController::class, 'index'])->name('index');
@@ -86,5 +95,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/{enquiry}/tasks', [\App\Http\Controllers\Admin\CaseController::class, 'storeTask'])->name('tasks.store');
         Route::patch('/tasks/{task}/toggle', [\App\Http\Controllers\Admin\CaseController::class, 'toggleTask'])->name('tasks.toggle');
         Route::post('/{enquiry}/followup', [\App\Http\Controllers\Admin\CaseController::class, 'updateFollowUp'])->name('followup');
+
+        // Staff Document & Consent Actions
+        Route::post('/{enquiry}/documents', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'store'])->name('documents.store');
+        Route::get('/documents/{document}/download', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'download'])->name('documents.download');
+        Route::post('/documents/{document}/verify', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'verify'])->name('documents.verify');
+        Route::post('/{enquiry}/consents/request', [\App\Http\Controllers\Admin\CaseDocumentController::class, 'requestConsent'])->name('consents.request');
     });
 });

@@ -93,6 +93,10 @@ class CaseController extends Controller
             'tasks.completedBy',
             'statusHistories.user',
             'communications.author',
+            'documents.uploader',
+            'documents.verifier',
+            'consents.opportunity.company',
+            'consents.requester',
         ]);
 
         $caseManagers = User::whereIn('role', [User::ROLE_CASE_MANAGER, User::ROLE_ADMIN])

@@ -87,10 +87,12 @@ customer visibility boundaries and next-action UX: Built `CaseManagementService`
 Deliverable: Models, migrations, service, controller, views, tests in `tests/Feature/CaseManagementTest.php`, and task record in `docs/tasks/T10-case-management.md`.
 Acceptance: Complete. 100% test pass rate across 54 automated tests (`Tests: 54 passed (230 assertions)`).
 
-### T11 --- Documents and consent (P1)
+### T11 --- Documents and consent (P1) [COMPLETED]
 
 Private uploads/downloads, file validation, access logs and explicit
-consent for document sharing/application submission.
+consent for document sharing/application submission: Built `DocumentService`, `Admin\CaseDocumentController`, `Customer\CaseDocumentController`, models (`Document`, `DocumentAccessLog`, `DocumentConsent`), migrations, private storage on local disk, access logging, and customer consent grant/revoke workflows.
+Deliverable: Models, migrations, service, controllers, views, tests in `tests/Feature/DocumentAndConsentTest.php`, and task record in `docs/tasks/T11-documents-and-consent.md`.
+Acceptance: Complete. 100% test pass rate across 62 automated tests (`Tests: 62 passed (264 assertions)`).
 
 ### T12 --- Legal, privacy and cookies (P1)
 

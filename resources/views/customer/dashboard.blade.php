@@ -157,11 +157,22 @@
                                     <span class="text-accent-green font-bold">&bull;</span>
                                     Next Action: Our assigned case specialist coordinates territory viability with the franchisor before scheduling preliminary intake.
                                 </p>
-                                @if($enquiry->opportunity)
-                                    <a href="{{ route('opportunities.show', $enquiry->opportunity->slug) }}" class="font-semibold text-ink-primary hover:underline">
-                                        View Disclosures &rarr;
+                                <div class="flex items-center gap-4">
+                                    @if($enquiry->opportunity)
+                                        <a href="{{ route('opportunities.show', $enquiry->opportunity->slug) }}" class="font-semibold text-ink-primary hover:underline">
+                                            Disclosures &rarr;
+                                        </a>
+                                    @endif
+                                    <a href="{{ route('customer.cases.documents.show', $enquiry->id) }}" class="inline-flex items-center gap-1.5 font-semibold text-ink-primary hover:underline">
+                                        <span>Vault &amp; Authorizations</span>
+                                        @if($enquiry->consents->where('status', 'pending')->count() > 0)
+                                            <span class="px-1.5 py-0.5 bg-status-caveat-bg text-status-caveat-text border border-status-caveat-border font-mono text-[10px] rounded-sm font-bold">
+                                                {{ $enquiry->consents->where('status', 'pending')->count() }} Action Needed
+                                            </span>
+                                        @endif
+                                        &rarr;
                                     </a>
-                                @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach
