@@ -71,10 +71,12 @@ ranking and explainable match reasons. No score bypasses verification: Built `As
 Deliverable: Service, controller, views, tests in `tests/Feature/AssessmentMatchingTest.php`, and task record in `docs/tasks/T08-customer-assessment-and-matching.md`.
 Acceptance: Complete. 100% test pass rate across 30 automated tests (`Tests: 30 passed (137 assertions)`).
 
-### T09 --- Customer authentication (P1)
+### T09 --- Customer authentication (P1) [COMPLETED]
 
 Implement secure account/session behavior. Add OTP only after provider
-and applicable messaging requirements are verified.
+and applicable messaging requirements are verified: Built user roles (`customer`, `case_manager`, `verification_officer`, `admin`), `RegisteredUserController`, `AuthenticatedSessionController`, `PasswordResetController`, `CustomerDashboardController`, `EnsureUserRole` middleware, linked enquiries, and authenticated layout.
+Deliverable: Migrations, controllers, middleware, views, tests in `tests/Feature/AuthenticationTest.php`, and task record in `docs/tasks/T09-customer-authentication.md`.
+Acceptance: Complete. 100% test pass rate across 45 automated tests (`Tests: 45 passed (188 assertions)`).
 
 ## Phase 2 --- Managed service
 

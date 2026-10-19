@@ -13,6 +13,7 @@ class Enquiry extends Model
 
     protected $fillable = [
         'reference_code',
+        'user_id',
         'opportunity_id',
         'full_name',
         'phone',
@@ -36,6 +37,14 @@ class Enquiry extends Model
         'consent_recorded_at' => 'datetime',
         'carpet_area_sqft' => 'integer',
     ];
+
+    /**
+     * Associated customer account (if authenticated or registered).
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Associated target opportunity (if initiated from an opportunity profile).

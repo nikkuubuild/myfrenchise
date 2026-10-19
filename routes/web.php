@@ -53,3 +53,26 @@ Route::get('/verification-policy', [PageController::class, 'verificationPolicy']
 Route::get('/grievance-and-fraud', [PageController::class, 'grievance'])->name('pages.grievance');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('pages.privacy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('pages.terms');
+
+// Authentication & Account Recovery Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->middleware('throttle:auth');
+
+    Route::get('/login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store'])->middleware('throttle:auth');
+
+    Route::get('/forgot-password', [\App\Http\Controllers\Auth\PasswordResetController::class, 'create'])->name('password.request');
+    Route::post('/forgot-password', [\App\Http\Controllers\Auth\PasswordResetController::class, 'store'])->middleware('throttle:auth')->name('password.email');
+    Route::get('/reset-password/{token}', [\App\Http\Controllers\Auth\PasswordResetController::class, 'edit'])->name('password.reset');
+    Route::post('/reset-password', [\App\Http\Controllers\Auth\PasswordResetController::class, 'update'])->middleware('throttle:auth')->name('password.store');
+});
+
+// Authenticated Routes
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    // Customer Portal Dashboard
+    Route::get('/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/customer/dashboard', [\App\Http\Controllers\CustomerDashboardController::class, 'index'])->name('customer.dashboard');
+});

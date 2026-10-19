@@ -38,6 +38,7 @@ class EnquiryController extends Controller
 
         $enquiry = Enquiry::create([
             'reference_code' => Enquiry::generateReferenceCode(),
+            'user_id' => $request->user()?->id,
             'opportunity_id' => $validated['opportunity_id'] ?? null,
             'full_name' => $validated['full_name'],
             'phone' => $validated['phone'],

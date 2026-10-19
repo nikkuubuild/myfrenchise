@@ -16,19 +16,41 @@
                 <a href="{{ url('/opportunities') }}" class="hover:text-ink-primary transition-colors">
                     Explore Opportunities
                 </a>
+                <a href="{{ url('/assessment') }}" class="hover:text-ink-primary transition-colors">
+                    Matching Engine
+                </a>
                 <a href="{{ url('/how-it-works') }}" class="hover:text-ink-primary transition-colors">
-                    How Managed Service Works
+                    How It Works
                 </a>
-                <a href="{{ url('/verification-policy') }}" class="hover:text-ink-primary transition-colors">
-                    Verification Standard
-                </a>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="hover:text-ink-primary transition-colors font-semibold text-ink-primary">
+                        My Dashboard
+                    </a>
+                @endauth
             </nav>
 
-            <!-- Primary Action -->
-            <div class="flex items-center gap-3">
-                <a href="{{ url('/enquiry') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-ink-primary hover:bg-accent-navy-light rounded-sm transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-ink-primary focus:ring-offset-2">
-                    Start Needs Assessment
-                </a>
+            <!-- Actions / Auth Area -->
+            <div class="flex items-center gap-4">
+                @guest
+                    <a href="{{ route('login') }}" class="text-sm font-medium text-ink-secondary hover:text-ink-primary transition-colors">
+                        Sign In
+                    </a>
+                    <a href="{{ url('/enquiry') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-ink-primary hover:bg-accent-navy-light rounded-sm transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-ink-primary focus:ring-offset-2">
+                        Get Started
+                    </a>
+                @else
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-mono text-ink-muted hidden sm:inline">
+                            {{ Auth::user()->name }}
+                        </span>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="text-xs font-medium text-ink-muted hover:text-ink-primary hover:underline cursor-pointer">
+                                Sign Out
+                            </button>
+                        </form>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>
