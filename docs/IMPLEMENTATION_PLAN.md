@@ -64,10 +64,12 @@ SEO-friendly pages: Built `HomeController`, `OpportunityController`, `EnquiryCon
 Deliverable: Views, controllers, components, tests in `tests/Feature/PublicDiscoveryTest.php`, and task record in `docs/tasks/T07-public-website-and-opportunity-discovery.md`.
 Acceptance: Complete. 100% test pass rate across 23 automated tests (`Tests: 23 passed (115 assertions)`).
 
-### T08 --- Customer assessment and matching (P1)
+### T08 --- Customer assessment and matching (P1) [COMPLETED]
 
 Build progressive assessment, hard eligibility filters, configurable
-ranking and explainable match reasons. No score bypasses verification.
+ranking and explainable match reasons. No score bypasses verification: Built `AssessmentMatchingService` with 3 hard filters and 5 weighted factors (budget, space, location, sector, experience), `AssessmentController`, intake & results views, and automated tests.
+Deliverable: Service, controller, views, tests in `tests/Feature/AssessmentMatchingTest.php`, and task record in `docs/tasks/T08-customer-assessment-and-matching.md`.
+Acceptance: Complete. 100% test pass rate across 30 automated tests (`Tests: 30 passed (137 assertions)`).
 
 ### T09 --- Customer authentication (P1)
 

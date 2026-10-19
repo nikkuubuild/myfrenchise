@@ -43,6 +43,10 @@ Route::get('/enquiry', [EnquiryController::class, 'create'])->name('enquiry.crea
 Route::post('/enquiry', [EnquiryController::class, 'store'])->middleware('throttle:enquiry')->name('enquiry.store');
 Route::get('/enquiry/confirmed', [EnquiryController::class, 'confirmed'])->name('enquiry.confirmed');
 
+// Interactive Opportunity Matching Engine
+Route::get('/assessment', [\App\Http\Controllers\AssessmentController::class, 'index'])->name('assessment.index');
+Route::post('/assessment/match', [\App\Http\Controllers\AssessmentController::class, 'match'])->name('assessment.match');
+
 // Informational, Governance & Policy Pages
 Route::get('/how-it-works', [PageController::class, 'howItWorks'])->name('pages.how-it-works');
 Route::get('/verification-policy', [PageController::class, 'verificationPolicy'])->name('pages.verification-policy');
