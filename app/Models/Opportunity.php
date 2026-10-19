@@ -90,6 +90,22 @@ class Opportunity extends Model
     }
 
     /**
+     * Get all verification audit cases.
+     */
+    public function verificationCases(): HasMany
+    {
+        return $this->hasMany(VerificationCase::class)->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Get latest verification case.
+     */
+    public function latestVerificationCase(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(VerificationCase::class)->latestOfMany();
+    }
+
+    /**
      * Scope for published and verified opportunities.
      */
     public function scopePublished(Builder $query): Builder

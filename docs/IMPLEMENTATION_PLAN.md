@@ -48,11 +48,13 @@ constraints: 6 relational tables migrated, Eloquent models built with scopes (`p
 Deliverable: Migrations, models, seeders, test suite in `tests/Feature/OpportunityDataModelTest.php`, and task record in `docs/tasks/T05-core-opportunity-data-model.md`.
 Acceptance: Complete. 100% test pass rate (`Tests: 11 passed (48 assertions)`).
 
-### T06 --- Verification and publication workflow (P1)
+### T06 --- Verification and publication workflow (P1) [COMPLETED]
 
 Create verification cases/checks/evidence, reviewer approvals, re-review
 dates, suspend/unpublish behavior and audit events. Publication requires
-approved evidence.
+approved evidence: Migrations for cases, checks, and audit events, Eloquent models, `VerificationService` with guardrails, and feature tests in `tests/Feature/VerificationWorkflowTest.php`.
+Deliverable: Service, models, migrations, tests, and task record in `docs/tasks/T06-verification-and-publication-workflow.md`.
+Acceptance: Complete. 100% test pass rate (`Tests: 15 passed (70 assertions)`).
 
 ### T07 --- Public website and opportunity discovery (P1)
 
