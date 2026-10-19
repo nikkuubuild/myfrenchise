@@ -22,7 +22,7 @@
                 </p>
 
                 <!-- Search & Filter Formulation -->
-                <form action="{{ url('/opportunities') }}" method="GET" class="bg-surface-canvas p-4 sm:p-5 rounded-sm border border-border-subtle shadow-sm">
+                <form action="{{ route('opportunities.index') }}" method="GET" class="bg-surface-canvas p-4 sm:p-5 rounded-sm border border-border-subtle shadow-sm">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                         <!-- Sector Filter -->
                         <div>
@@ -31,12 +31,9 @@
                             </label>
                             <select id="sector" name="sector" class="w-full text-sm bg-surface-canvas border border-border-strong rounded-sm px-3 py-2 text-ink-primary focus:border-ink-primary focus:ring-1 focus:ring-ink-primary">
                                 <option value="">All Sectors</option>
-                                <option value="food-beverage">Food & Beverage (QSR)</option>
-                                <option value="retail-fmcg">Retail & FMCG</option>
-                                <option value="education">Education & Training</option>
-                                <option value="logistics">Courier & Logistics</option>
-                                <option value="healthcare">Healthcare & Diagnostic</option>
-                                <option value="banking-csp">Banking & Financial Outlets</option>
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->slug }}">{{ $cat->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -64,9 +61,10 @@
                                 <option value="UP">Uttar Pradesh</option>
                                 <option value="MH">Maharashtra</option>
                                 <option value="DL">Delhi NCR</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="RJ">Rajasthan</option>
                                 <option value="BR">Bihar</option>
                                 <option value="MP">Madhya Pradesh</option>
-                                <option value="RJ">Rajasthan</option>
                             </select>
                         </div>
                     </div>
@@ -84,6 +82,33 @@
         </div>
     </section>
 
+    <!-- Featured Verified Opportunities Section -->
+    @if(isset($featuredOpportunities) && $featuredOpportunities->count() > 0)
+        <section class="py-16 border-b border-border-subtle">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-8 pb-3 border-b border-border-subtle">
+                    <div>
+                        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green block mb-1">
+                            Audited Intake
+                        </span>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold text-ink-primary">
+                            Featured Verified Opportunities
+                        </h2>
+                    </div>
+                    <a href="{{ route('opportunities.index') }}" class="text-sm font-semibold text-ink-primary hover:underline">
+                        View All {{ $stats['total_opportunities'] ?? '' }} &rarr;
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($featuredOpportunities as $featured)
+                        <x-opportunity.card :opportunity="$featured" />
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
     <!-- Curated Opportunity Categories Section -->
     <section class="py-16 md:py-20 border-b border-border-subtle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,107 +121,39 @@
                         Explore business categories actively monitored under our verification workflow.
                     </p>
                 </div>
-                <a href="{{ url('/opportunities') }}" class="mt-4 sm:mt-0 text-sm font-medium text-ink-primary hover:underline inline-flex items-center gap-1">
+                <a href="{{ route('opportunities.index') }}" class="mt-4 sm:mt-0 text-sm font-medium text-ink-primary hover:underline inline-flex items-center gap-1">
                     View Catalog &rarr;
                 </a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Sector 1 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Direct Consumer
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Food & Beverage (QSR)
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Beverage kiosks, quick-service formats, and bakery setups with documented equipment and vendor agreements.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹5L - ₹20L &bull; 150-400 sq ft
+                @foreach($categories as $cat)
+                    <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green">
+                                    Sector {{ $cat->sort_order }}
+                                </span>
+                                @if(isset($cat->opportunities_count))
+                                    <span class="text-xs font-mono text-ink-muted">
+                                        {{ $cat->opportunities_count }} Verified
+                                    </span>
+                                @endif
+                            </div>
+                            <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
+                                <a href="{{ route('opportunities.index', ['sector' => $cat->slug]) }}" class="hover:underline">
+                                    {{ $cat->name }}
+                                </a>
+                            </h3>
+                            <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
+                                {{ $cat->description }}
+                            </p>
+                        </div>
+                        <a href="{{ route('opportunities.index', ['sector' => $cat->slug]) }}" class="text-xs font-semibold text-ink-primary hover:underline inline-flex items-center gap-1">
+                            Explore Sector &rarr;
+                        </a>
                     </div>
-                </div>
-
-                <!-- Sector 2 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Supply & Commerce
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Retail & FMCG Distribution
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Exclusive territory dealerships, grocery franchises, and multi-brand consumer electronics distribution.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹10L - ₹35L &bull; Godown/Retail
-                    </div>
-                </div>
-
-                <!-- Sector 3 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Infrastructure & Network
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Courier & Logistics Hubs
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Last-mile delivery centers and express parcel distribution franchises with institutional shipping partners.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹3L - ₹10L &bull; 200-500 sq ft
-                    </div>
-                </div>
-
-                <!-- Sector 4 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Social & Knowledge
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Education & Skill Institutes
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Pre-schools, coding centers, and competitive exam coaching centers with audited curriculum licensing.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹12L - ₹40L &bull; 1000+ sq ft
-                    </div>
-                </div>
-
-                <!-- Sector 5 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Essential Services
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Healthcare & Diagnostics
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Pathology collection points, pharmacy retail counters, and dental clinics with medical compliance backing.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹8L - ₹25L &bull; 250-600 sq ft
-                    </div>
-                </div>
-
-                <!-- Sector 6 -->
-                <div class="p-6 bg-surface-canvas border border-border-subtle rounded-sm hover:border-ink-primary transition-colors">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green mb-2 block">
-                        Institutional & Regulated
-                    </span>
-                    <h3 class="font-serif text-lg font-bold text-ink-primary mb-2">
-                        Banking CSP & Payment Outlets
-                    </h3>
-                    <p class="text-sm text-ink-secondary mb-4 leading-relaxed">
-                        Customer Service Points and banking kiosks strictly verified against bank sponsor authorization certificates.
-                    </p>
-                    <div class="text-xs font-medium text-ink-muted">
-                        Typical Outlay: ₹1.5L - ₹5L &bull; 100-200 sq ft
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -267,7 +224,7 @@
                         Submit a confidential needs assessment. Our research team will shortlist viable opportunities.
                     </p>
                 </div>
-                <x-ui.button href="{{ url('/enquiry') }}" variant="primary" class="whitespace-nowrap">
+                <x-ui.button href="{{ route('enquiry.create') }}" variant="primary" class="whitespace-nowrap">
                     Submit Needs Assessment
                 </x-ui.button>
             </div>

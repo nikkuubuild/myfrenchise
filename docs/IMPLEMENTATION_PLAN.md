@@ -56,11 +56,13 @@ approved evidence: Migrations for cases, checks, and audit events, Eloquent mode
 Deliverable: Service, models, migrations, tests, and task record in `docs/tasks/T06-verification-and-publication-workflow.md`.
 Acceptance: Complete. 100% test pass rate (`Tests: 15 passed (70 assertions)`).
 
-### T07 --- Public website and opportunity discovery (P1)
+### T07 --- Public website and opportunity discovery (P1) [COMPLETED]
 
 Build homepage, category/search, opportunity detail and managed-service
 enquiry using the approved design system and server-rendered
-SEO-friendly pages.
+SEO-friendly pages: Built `HomeController`, `OpportunityController`, `EnquiryController`, `PageController`, catalog filtering, opportunity profile with itemized CapEx, consented enquiry flow, and policy pages.
+Deliverable: Views, controllers, components, tests in `tests/Feature/PublicDiscoveryTest.php`, and task record in `docs/tasks/T07-public-website-and-opportunity-discovery.md`.
+Acceptance: Complete. 100% test pass rate across 23 automated tests (`Tests: 23 passed (115 assertions)`).
 
 ### T08 --- Customer assessment and matching (P1)
 

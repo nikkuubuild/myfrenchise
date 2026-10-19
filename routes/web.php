@@ -1,20 +1,22 @@
 <?php
 
+use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - Franchise Dekho Baseline
+| Web Routes - Franchise Dekho Application
 |--------------------------------------------------------------------------
 */
 
-// Public Editorial Homepage
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Homepage
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Health Check / System Status Endpoint
+// Health Check / System Status
 Route::get('/health', function () {
     try {
         DB::connection()->getPdo();
@@ -32,31 +34,18 @@ Route::get('/health', function () {
     ]);
 })->name('health');
 
-// Public Placeholders for Phase 1 MVP routes
-Route::get('/opportunities', function () {
-    return response()->view('welcome'); // Will be replaced by Opportunity Catalog in T07
-})->name('opportunities.index');
+// Opportunity Discovery Catalog & Profiles
+Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
+Route::get('/opportunities/{slug}', [OpportunityController::class, 'show'])->name('opportunities.show');
 
-Route::get('/how-it-works', function () {
-    return response()->view('welcome'); // Detailed in T07
-})->name('pages.how-it-works');
+// Needs Assessment & Consented Enquiry (with rate limiting)
+Route::get('/enquiry', [EnquiryController::class, 'create'])->name('enquiry.create');
+Route::post('/enquiry', [EnquiryController::class, 'store'])->middleware('throttle:enquiry')->name('enquiry.store');
+Route::get('/enquiry/confirmed', [EnquiryController::class, 'confirmed'])->name('enquiry.confirmed');
 
-Route::get('/verification-policy', function () {
-    return response()->view('welcome'); // Detailed in T06/T07
-})->name('pages.verification-policy');
-
-Route::get('/enquiry', function () {
-    return response()->view('welcome'); // Detailed in T07/T08
-})->name('enquiry.create');
-
-Route::get('/grievance-and-fraud', function () {
-    return response()->view('welcome'); // Detailed in T12
-})->name('pages.grievance');
-
-Route::get('/privacy-policy', function () {
-    return response()->view('welcome'); // Detailed in T12
-})->name('pages.privacy');
-
-Route::get('/terms-of-service', function () {
-    return response()->view('welcome'); // Detailed in T12
-})->name('pages.terms');
+// Informational, Governance & Policy Pages
+Route::get('/how-it-works', [PageController::class, 'howItWorks'])->name('pages.how-it-works');
+Route::get('/verification-policy', [PageController::class, 'verificationPolicy'])->name('pages.verification-policy');
+Route::get('/grievance-and-fraud', [PageController::class, 'grievance'])->name('pages.grievance');
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('pages.privacy');
+Route::get('/terms-of-service', [PageController::class, 'terms'])->name('pages.terms');
