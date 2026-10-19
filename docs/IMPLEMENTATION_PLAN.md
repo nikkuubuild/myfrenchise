@@ -40,11 +40,13 @@ current task is reviewed and its outcome is reported.
 
 ## Phase 1 --- Public MVP
 
-### T05 --- Core opportunity data model (P1)
+### T05 --- Core opportunity data model (P1) [COMPLETED]
 
 Create only required companies, opportunities, categories, locations,
 costs, requirements and publication state. Add provenance and
-constraints.
+constraints: 6 relational tables migrated, Eloquent models built with scopes (`published`, `active`, `verified`, `inBudget`), factories, and database seeders created.
+Deliverable: Migrations, models, seeders, test suite in `tests/Feature/OpportunityDataModelTest.php`, and task record in `docs/tasks/T05-core-opportunity-data-model.md`.
+Acceptance: Complete. 100% test pass rate (`Tests: 11 passed (48 assertions)`).
 
 ### T06 --- Verification and publication workflow (P1)
 
