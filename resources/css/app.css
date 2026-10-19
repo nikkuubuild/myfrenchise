@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink-primary: #172B3A;
+  --color-ink-secondary: #334E68;
+  --color-ink-muted: #586B7B;
+  --color-surface-canvas: #FFFFFF;
+  --color-surface-paper: #F6F3ED;
+  --color-surface-subtle: #EFECE6;
+  --color-border-subtle: #E5E0D8;
+  --color-border-strong: #C8C0B4;
+  --color-accent-green: #49685B;
+  --color-accent-green-bg: #EDF3F0;
+  --color-accent-brass: #D7B77A;
+  
+  --color-status-verified-text: #1B4D3E;
+  --color-status-verified-bg: #EAF4F0;
+  --color-status-verified-border: #A3D2BE;
+  
+  --color-status-pending-text: #7A5200;
+  --color-status-pending-bg: #FFF8EB;
+  --color-status-pending-border: #E5C578;
+  
+  --color-status-caveat-text: #8A4500;
+  --color-status-caveat-bg: #FDF4ED;
+  --color-status-caveat-border: #F4B98E;
+  
+  --color-status-rejected-text: #8B1E1E;
+  --color-status-rejected-bg: #FDF1F1;
+  --color-status-rejected-border: #F1AAAA;
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-primary);
+  background-color: var(--color-surface-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-ink-primary);
+  outline-offset: 2px;
+}

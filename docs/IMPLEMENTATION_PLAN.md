@@ -25,13 +25,12 @@ current task is reviewed and its outcome is reported.
 -   Deliverable: Approved first-screen specifications, component inventory, and task record in `docs/tasks/T02-product-and-design-baseline.md`.
 -   Acceptance: Complete. Design system tokens and screen specifications ready for implementation.
 
-### T03 --- Laravel application foundation (P0)
+### T03 --- Laravel application foundation (P0) [COMPLETED]
 
--   Install compatible Laravel release.
--   Configure environment example, database, routes, shared layout,
-    error handling and baseline tests.
--   Deliverable: app boots locally/in target environment and basic
-    checks pass.
+-   Install compatible Laravel release: Laravel 11.57.0 on PHP 8.2.30 installed with Composer.
+-   Configure environment example, database, routes, shared layout, error handling and baseline tests: Configured with SQLite/MySQL, Vite + Tailwind design tokens, editorial header/footer, UI components, and `/health` route.
+-   Deliverable: App boots locally and baseline tests pass (`Tests: 3 passed (12 assertions)`). Task record in `docs/tasks/T03-laravel-application-foundation.md`.
+-   Acceptance: Complete. Foundation ready for feature development.
 
 ### T04 --- Security and operational baseline (P0)
 
