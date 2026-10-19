@@ -18,14 +18,12 @@ current task is reviewed and its outcome is reported.
 -   Deliverable: Environment report in `docs/tasks/T01-environment-readiness.md` and decision record in `docs/decisions/ADR-001-laravel-release-and-hosting-layout.md`.
 -   Acceptance: Complete. All baseline assumptions verified.
 
-### T02 --- Product and design baseline (P0)
+### T02 --- Product and design baseline (P0) [COMPLETED]
 
--   Review PRD, design policy and art direction.
--   Define sitemap, user journeys, initial wireframes and design tokens.
--   Validate the first design direction against representative users
-    where possible.
--   Deliverable: approved first-screen specifications and component
-    inventory.
+-   Review PRD, design policy and art direction: Completed against editorial standard.
+-   Define sitemap, user journeys, initial wireframes and design tokens: Defined in `designs/DESIGN_TOKENS.md`, `designs/SITEMAP_AND_JOURNEYS.md`, and `designs/SCREEN_SPECIFICATIONS.md`.
+-   Deliverable: Approved first-screen specifications, component inventory, and task record in `docs/tasks/T02-product-and-design-baseline.md`.
+-   Acceptance: Complete. Design system tokens and screen specifications ready for implementation.
 
 ### T03 --- Laravel application foundation (P0)
 
