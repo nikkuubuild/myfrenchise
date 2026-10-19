@@ -32,11 +32,11 @@ current task is reviewed and its outcome is reported.
 -   Deliverable: App boots locally and baseline tests pass (`Tests: 3 passed (12 assertions)`). Task record in `docs/tasks/T03-laravel-application-foundation.md`.
 -   Acceptance: Complete. Foundation ready for feature development.
 
-### T04 --- Security and operational baseline (P0)
+### T04 --- Security and operational baseline (P0) [COMPLETED]
 
--   Configure safe production errors, sessions, CSRF, rate limits,
-    secrets, storage boundaries, logs, backups and deployment notes.
--   Deliverable: reviewed security baseline and recovery procedure.
+-   Configure safe production errors, sessions, CSRF, rate limits, secrets, storage boundaries, logs, backups and deployment notes: Enforced `SecurityHeadersMiddleware`, rate limiters, storage isolation, and `.htaccess` file blocks.
+-   Deliverable: Reviewed security baseline, runbook in `docs/OPERATIONAL_RECOVERY_RUNBOOK.md`, and task record in `docs/tasks/T04-security-and-operational-baseline.md`.
+-   Acceptance: Complete. Automated security tests pass (`Tests: 6 passed (27 assertions)`).
 
 ## Phase 1 --- Public MVP
 
