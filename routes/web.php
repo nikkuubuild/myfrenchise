@@ -21,17 +21,21 @@ Route::get('/health', function () {
     try {
         DB::connection()->getPdo();
         $dbStatus = 'connected';
+        $status = 'healthy';
+        $code = 200;
     } catch (\Throwable $e) {
         $dbStatus = 'disconnected';
+        $status = 'unhealthy';
+        $code = 503;
     }
 
     return response()->json([
-        'status' => 'healthy',
+        'status' => $status,
         'app' => config('app.name'),
         'environment' => config('app.env'),
         'database' => $dbStatus,
         'timestamp' => now()->toIso8601String(),
-    ]);
+    ], $code);
 })->name('health');
 
 // Opportunity Discovery Catalog & Profiles

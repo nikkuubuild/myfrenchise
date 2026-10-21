@@ -5,9 +5,17 @@
 
     RewriteEngine On
 
+    # Enforce HTTPS (compatible with Hostinger SSL, Cloudflare, and direct Apache SSL)
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
     # Block access to hidden files and sensitive configuration extensions
     RewriteRule (^|/)\.(?!well-known/) - [F]
-    RewriteRule \.(env|sqlite|sql|log|md|lock|yml|yaml|ini|bak)$ - [F]
+    RewriteRule \.(env|sqlite|sql|log|md|lock|yml|yaml|ini|bak|git)$ - [F]
+
+    # Block direct web access to application source directories if docroot is misconfigured
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests)/ - [F]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -26,4 +34,27 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+# Defense-in-depth Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Browser Caching for Production Static Assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
 </IfModule>

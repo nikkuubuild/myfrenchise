@@ -147,11 +147,18 @@ human review for consequential actions:
 Deliverable: Service, controller, view, feature tests in `tests/Feature/AiDiscoveryTest.php`, and task record in `docs/tasks/T15-ai-assisted-discovery.md`.
 Acceptance: Complete. 100% test pass rate across all 99 tests in the application suite (`Tests: 99 passed (546 assertions)`).
 
-### T16 --- Production readiness (P0 before public launch)
+### T16 --- Production readiness (P0 before public launch) [COMPLETED]
 
 Security/permission tests, accessibility, performance, SEO validation,
 backup restore, monitoring, incident/complaint handling, legal review
-and release/rollback checklist.
+and release/rollback checklist:
+- Engineered custom editorial error templates (403, 404, 419, 429, 500, 503) with zero information or stack trace leakage.
+- Hardened Apache web server configuration in `public/.htaccess` (HTTPS redirection, `mod_headers` security headers defense-in-depth, `mod_expires` caching, dotfile/directory protection).
+- Updated `.env.example` with sanitized production configuration covering Razorpay, AI discovery, database, and secure cookie parameters.
+- Implemented automated pre-flight diagnostic command `php artisan app:production-check` (`app/Console/Commands/ProductionCheckCommand.php`).
+- Authored authoritative Hostinger shared hosting release runbook and fast rollback procedure in `docs/RELEASE_CHECKLIST.md`.
+Deliverable: Views, `.htaccess`, `.env.example`, Artisan command, runbook, feature tests in `tests/Feature/ProductionReadinessTest.php`, and task record in `docs/tasks/T16-production-readiness.md`.
+Acceptance: Complete. 100% test pass rate across all 110 tests in the application suite (`Tests: 110 passed (591 assertions)`).
 
 ## Dependencies
 
