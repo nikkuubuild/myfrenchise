@@ -18,6 +18,7 @@ class SitemapController extends Controller
             ['url' => url('/'), 'lastmod' => now()->toIso8601String(), 'changefreq' => 'daily', 'priority' => '1.0'],
             ['url' => route('opportunities.index'), 'lastmod' => now()->toIso8601String(), 'changefreq' => 'daily', 'priority' => '0.9'],
             ['url' => route('assessment.index'), 'lastmod' => now()->toIso8601String(), 'changefreq' => 'weekly', 'priority' => '0.8'],
+            ['url' => route('assistant.index'), 'lastmod' => now()->toIso8601String(), 'changefreq' => 'weekly', 'priority' => '0.8'],
             ['url' => route('enquiry.create'), 'lastmod' => now()->startOfMonth()->toIso8601String(), 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['url' => route('guides.index'), 'lastmod' => now()->toIso8601String(), 'changefreq' => 'daily', 'priority' => '0.8'],
             ['url' => route('pages.how-it-works'), 'lastmod' => now()->startOfMonth()->toIso8601String(), 'changefreq' => 'monthly', 'priority' => '0.7'],

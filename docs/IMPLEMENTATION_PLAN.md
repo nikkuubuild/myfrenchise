@@ -134,11 +134,18 @@ controls, editorial workflow and content freshness:
 Deliverable: Models, services, controllers, views, seeder, feature tests in `tests/Feature/SeoAndContentTest.php`, and task record in `docs/tasks/T14-seo-and-content-system.md`.
 Acceptance: Complete. 100% test pass rate across all 90 tests in the application suite (`Tests: 90 passed (493 assertions)`).
 
-### T15 --- AI-assisted discovery (P2)
+### T15 --- AI-assisted discovery (P2) [COMPLETED]
 
 Only after verified structured data exists. Ground answers in approved
 records, show source/last-verified dates, handle uncertainty and require
-human review for consequential actions.
+human review for consequential actions:
+- Implemented `AiDiscoveryService` strictly grounding responses in approved, verified records (`Opportunity::published()`).
+- Added non-negotiable safety guardrails preventing AI payment authorization, automated application approvals, and fraudulent earnings promises.
+- Surfaced verifiable attribution (company legal entity, MCA CIN, itemized CapEx, audit date) and transparently disclosed missing physical evidence.
+- Built interactive discovery workspace (`/assistant` & `/assistant/query`) with prompt chips and rate limiting (`throttle:ai_discovery`).
+- Added mandatory non-negotiable AI governance and regulatory notices.
+Deliverable: Service, controller, view, feature tests in `tests/Feature/AiDiscoveryTest.php`, and task record in `docs/tasks/T15-ai-assisted-discovery.md`.
+Acceptance: Complete. 100% test pass rate across all 99 tests in the application suite (`Tests: 99 passed (546 assertions)`).
 
 ### T16 --- Production readiness (P0 before public launch)
 

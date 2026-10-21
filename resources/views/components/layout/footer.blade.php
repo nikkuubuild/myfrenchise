@@ -18,6 +18,7 @@
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-ink-primary mb-3">Discovery</h3>
                 <ul class="space-y-2 text-sm text-ink-secondary">
                     <li><a href="{{ url('/opportunities') }}" class="hover:text-ink-primary transition-colors">All Opportunities</a></li>
+                    <li><a href="{{ route('assistant.index') }}" class="hover:text-ink-primary transition-colors">AI Discovery Assistant</a></li>
                     <li><a href="{{ route('guides.index') }}" class="hover:text-ink-primary transition-colors">Due Diligence Guides</a></li>
                     <li><a href="{{ url('/how-it-works') }}" class="hover:text-ink-primary transition-colors">How It Works</a></li>
                     <li><a href="{{ url('/enquiry') }}" class="hover:text-ink-primary transition-colors">Assisted Search</a></li>

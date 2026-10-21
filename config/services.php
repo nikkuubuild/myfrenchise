@@ -41,4 +41,10 @@ return [
         'webhook_secret' => env('RAZORPAY_WEBHOOK_SECRET', 'test_webhook_secret_key_123456'),
     ],
 
+    'ai' => [
+        'driver' => env('AI_DISCOVERY_DRIVER', 'grounded_engine'),
+        'api_key' => env('GEMINI_API_KEY'),
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-flash'),
+    ],
+
 ];

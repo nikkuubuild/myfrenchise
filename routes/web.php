@@ -61,6 +61,10 @@ Route::get('/enquiry/confirmed', [EnquiryController::class, 'confirmed'])->name(
 Route::get('/assessment', [\App\Http\Controllers\AssessmentController::class, 'index'])->name('assessment.index');
 Route::post('/assessment/match', [\App\Http\Controllers\AssessmentController::class, 'match'])->name('assessment.match');
 
+// Grounded AI Discovery Assistant (P2 - T15)
+Route::get('/assistant', [\App\Http\Controllers\AiDiscoveryController::class, 'index'])->name('assistant.index');
+Route::post('/assistant/query', [\App\Http\Controllers\AiDiscoveryController::class, 'query'])->middleware('throttle:ai_discovery')->name('assistant.query');
+
 use App\Http\Controllers\GrievanceController;
 
 // Informational, Governance & Policy Pages

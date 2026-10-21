@@ -22,6 +22,12 @@
                 <a href="{{ url('/assessment') }}" class="hover:text-ink-primary transition-colors">
                     Matching Engine
                 </a>
+                <a href="{{ route('assistant.index') }}" class="hover:text-ink-primary transition-colors flex items-center gap-1.5">
+                    <span>AI Discovery</span>
+                    <span class="text-[10px] font-mono px-1 py-0.2 bg-surface-paper border border-border-subtle rounded-xs text-status-verified-text">
+                        Grounded
+                    </span>
+                </a>
                 <a href="{{ url('/how-it-works') }}" class="hover:text-ink-primary transition-colors">
                     How It Works
                 </a>
