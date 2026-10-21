@@ -121,10 +121,18 @@ idempotency, billing, refunds and transparent fees:
 Deliverable: Migrations, models, services, controllers, views, seeders, feature tests in `tests/Feature/NotificationAndPaymentTest.php`, and task record in `docs/tasks/T13-notifications-and-payments.md`.
 Acceptance: Complete. 100% test pass rate across all 80 tests in the application suite (`Tests: 80 passed (403 assertions)`).
 
-### T14 --- SEO and content system (P1)
+### T14 --- SEO and content system (P1) [COMPLETED]
 
 Sitemaps, metadata, canonical URLs, structured data where valid, crawl
-controls, editorial workflow and content freshness.
+controls, editorial workflow and content freshness:
+- Implemented standard crawl controls (`/robots.txt`) with search/AI bot directives and strict `noindex, nofollow` on non-public routes.
+- Built dynamic XML sitemap (`/sitemap.xml`) indexing verified opportunities, sector landings, and published guides with `<lastmod>` audit dates.
+- Implemented canonical URLs, OpenGraph, Twitter card metadata, and Schema.org structured data (`Organization`, `WebSite`, `BreadcrumbList`, `Service`, `Article`).
+- Built sector-specific landing pages (`/sectors/{slug}`) with Indian regulatory licensing context and verified listings.
+- Created authoritative Due Diligence Knowledge Hub (`/guides` & `/guides/{slug}`) with statutory citations, disclaimer, and seeded guides.
+- Built staff editorial management queue (`/admin/articles`) with 180-day content freshness tracking and re-verification actions.
+Deliverable: Models, services, controllers, views, seeder, feature tests in `tests/Feature/SeoAndContentTest.php`, and task record in `docs/tasks/T14-seo-and-content-system.md`.
+Acceptance: Complete. 100% test pass rate across all 90 tests in the application suite (`Tests: 90 passed (493 assertions)`).
 
 ### T15 --- AI-assisted discovery (P2)
 
