@@ -1,4 +1,4 @@
-<x-layout.app title="Assessment Confirmed — Franchise Dekho">
+<x-layout.app title="Assessment Confirmed — Franchise Dekho" robots="noindex, nofollow">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
         <!-- Success Badge Indicator -->
         <div class="w-16 h-16 rounded-full bg-accent-green-bg border border-status-verified-border text-status-verified-text flex items-center justify-center mx-auto mb-6">

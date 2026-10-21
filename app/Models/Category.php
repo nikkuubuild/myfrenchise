@@ -34,6 +34,14 @@ class Category extends Model
     }
 
     /**
+     * Get all editorial articles associated with this category.
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
      * Scope for active categories.
      */
     public function scopeActive(Builder $query): Builder

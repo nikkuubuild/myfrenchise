@@ -1,4 +1,4 @@
-<x-layout.app title="Data Erasure &amp; Account Deletion — Franchise Dekho">
+<x-layout.app title="Data Erasure &amp; Account Deletion — Franchise Dekho" robots="noindex, nofollow">
     <section class="bg-surface-paper border-b border-border-subtle py-10 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">

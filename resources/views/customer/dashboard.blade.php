@@ -1,4 +1,4 @@
-<x-layout.app title="Entrepreneur Dashboard — Franchise Dekho">
+<x-layout.app title="Entrepreneur Dashboard — Franchise Dekho" robots="noindex, nofollow">
     <!-- Dashboard Header -->
     <section class="bg-surface-paper border-b border-border-subtle py-8 md:py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

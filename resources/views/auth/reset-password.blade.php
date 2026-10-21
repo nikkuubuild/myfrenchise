@@ -1,4 +1,4 @@
-<x-layout.app title="Update Your Password — Franchise Dekho">
+<x-layout.app title="Update Your Password — Franchise Dekho" robots="noindex, nofollow">
     <div class="min-h-[60vh] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
             <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green block mb-2">

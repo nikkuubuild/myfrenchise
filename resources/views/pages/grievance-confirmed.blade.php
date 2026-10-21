@@ -1,4 +1,4 @@
-<x-layout.app title="Grievance Received — Franchise Dekho">
+<x-layout.app title="Grievance Received — Franchise Dekho" robots="noindex, nofollow">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="bg-surface-canvas border border-border-strong rounded-sm p-8 sm:p-12 text-center space-y-6">
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-green-bg border border-status-verified-border text-status-verified-text mb-2">

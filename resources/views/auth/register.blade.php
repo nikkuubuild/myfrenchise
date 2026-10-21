@@ -1,4 +1,4 @@
-<x-layout.app title="Create Your Entrepreneur Account — Franchise Dekho">
+<x-layout.app title="Create Your Entrepreneur Account — Franchise Dekho" robots="noindex, nofollow">
     <div class="py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-xl text-center mb-8">
             <span class="text-xs font-mono font-semibold uppercase tracking-wider text-accent-green block mb-2">

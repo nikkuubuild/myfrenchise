@@ -1,4 +1,4 @@
-<x-layout.app title="Tax Invoice {{ $invoice->invoice_number }} — Franchise Dekho">
+<x-layout.app title="Tax Invoice {{ $invoice->invoice_number }} — Franchise Dekho" robots="noindex, nofollow">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <!-- Action Toolbar (hidden on print) -->
         <div class="mb-6 flex items-center justify-between print:hidden">

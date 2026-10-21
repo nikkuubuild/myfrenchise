@@ -1,2 +1,56 @@
+# Franchise Dekho - Robots & Crawl Policy (Standard Search & AI Crawlers)
+# Reference: docs/SEO_CONTENT.md
+
 User-agent: *
-Disallow:
+Allow: /
+Allow: /opportunities
+Allow: /sectors/
+Allow: /guides/
+Allow: /how-it-works
+Allow: /verification-policy
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+Disallow: /webhooks/
+Disallow: /health
+Disallow: /enquiry/confirmed
+Disallow: /grievance-and-fraud/confirmed
+Disallow: /assessment/match
+
+# OpenAI Search & Citation Bot
+User-agent: GPTBot
+Allow: /
+Allow: /opportunities
+Allow: /sectors/
+Allow: /guides/
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+Disallow: /enquiry/
+
+# Anthropic Claude Crawler
+User-agent: ClaudeBot
+Allow: /
+Allow: /opportunities
+Allow: /sectors/
+Allow: /guides/
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+Disallow: /enquiry/
+
+# Perplexity Search Bot
+User-agent: PerplexityBot
+Allow: /
+Allow: /opportunities
+Allow: /sectors/
+Allow: /guides/
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+
+# Common Crawl Bulk Scraper (Restricted from unstructured scraping)
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://franchisedekho.com/sitemap.xml

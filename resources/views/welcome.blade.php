@@ -1,4 +1,7 @@
-<x-layout.app>
+<x-layout.app 
+    :canonical="url('/')"
+    :schema="$schema"
+>
     <!-- Hero Section on Warm Paper -->
     <section class="bg-surface-paper border-b border-border-subtle py-16 md:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

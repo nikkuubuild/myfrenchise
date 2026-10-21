@@ -9,6 +9,10 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        protected \App\Services\SeoService $seoService
+    ) {}
+
     /**
      * Display the editorial homepage with live verified statistics and categories.
      */
@@ -41,6 +45,11 @@ class HomeController extends Controller
             'total_categories' => $categories->count(),
         ];
 
-        return view('welcome', compact('categories', 'featuredOpportunities', 'stats'));
+        $schema = [
+            $this->seoService->organizationSchema(),
+            $this->seoService->webSiteSchema(),
+        ];
+
+        return view('welcome', compact('categories', 'featuredOpportunities', 'stats', 'schema'));
     }
 }

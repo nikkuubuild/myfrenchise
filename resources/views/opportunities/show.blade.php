@@ -1,24 +1,19 @@
-<x-layout.app :title="$opportunity->title . ' — Verified Opportunity Profile | Franchise Dekho'">
+<x-layout.app 
+    :title="$opportunity->title . ' — Verified Opportunity Profile | Franchise Dekho'"
+    :metaDescription="$opportunity->summary"
+    :canonical="route('opportunities.show', $opportunity->slug)"
+    :schema="$schema"
+>
     <!-- Top Breadcrumb & Status Bar -->
-    <div class="bg-surface-paper border-b border-border-subtle py-3 text-xs text-ink-muted">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <nav class="flex items-center gap-2" aria-label="Breadcrumb">
-                <a href="{{ url('/') }}" class="hover:underline">Home</a>
-                <span>&rsaquo;</span>
-                <a href="{{ route('opportunities.index') }}" class="hover:underline">Opportunities</a>
-                <span>&rsaquo;</span>
-                <a href="{{ route('opportunities.index', ['sector' => $opportunity->category->slug]) }}" class="hover:underline">
-                    {{ $opportunity->category->name }}
-                </a>
-                <span>&rsaquo;</span>
-                <span class="text-ink-primary font-medium truncate">{{ $opportunity->title }}</span>
-            </nav>
-            <div class="hidden sm:flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-status-verified-text"></span>
-                <span>Audit Freshness: Within 180 Days</span>
-            </div>
-        </div>
-    </div>
+    <x-ui.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => url('/')],
+        ['label' => 'Opportunities', 'url' => route('opportunities.index')],
+        ['label' => $opportunity->category->name, 'url' => route('sectors.show', $opportunity->category->slug)],
+        ['label' => $opportunity->title]
+    ]">
+        <span class="w-1.5 h-1.5 rounded-full bg-status-verified-text"></span>
+        <span class="text-xs text-ink-muted">Audit Freshness: Within 180 Days</span>
+    </x-ui.breadcrumbs>
 
     <!-- Opportunity Header Panel on Warm Paper -->
     <section class="bg-surface-paper border-b border-border-subtle py-10 md:py-14">

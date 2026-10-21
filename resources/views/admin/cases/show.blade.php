@@ -1,4 +1,4 @@
-<x-layout.app title="Case Workspace #{{ $enquiry->reference_code }} — Franchise Dekho Operations">
+<x-layout.app title="Case Workspace #{{ $enquiry->reference_code }} — Franchise Dekho Operations" robots="noindex, nofollow">
     <!-- Header -->
     <section class="bg-surface-paper border-b border-border-subtle py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

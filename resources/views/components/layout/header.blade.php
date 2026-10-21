@@ -16,6 +16,9 @@
                 <a href="{{ url('/opportunities') }}" class="hover:text-ink-primary transition-colors">
                     Explore Opportunities
                 </a>
+                <a href="{{ route('guides.index') }}" class="hover:text-ink-primary transition-colors">
+                    Due Diligence Guides
+                </a>
                 <a href="{{ url('/assessment') }}" class="hover:text-ink-primary transition-colors">
                     Matching Engine
                 </a>

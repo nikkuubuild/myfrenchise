@@ -38,6 +38,20 @@ Route::get('/health', function () {
 Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
 Route::get('/opportunities/{slug}', [OpportunityController::class, 'show'])->name('opportunities.show');
 
+// Sector-Specific Landing Pages & Due Diligence Guides
+Route::get('/sectors/{slug}', [\App\Http\Controllers\SectorController::class, 'show'])->name('sectors.show');
+
+// Editorial Due Diligence & Legal Knowledge Hub
+Route::get('/guides', [\App\Http\Controllers\ArticleController::class, 'index'])->name('guides.index');
+Route::get('/guides/{slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('guides.show');
+
+// Technical SEO: Dynamic XML Sitemap & Crawl Controls
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', function () {
+    return response(file_get_contents(public_path('robots.txt')), 200)
+        ->header('Content-Type', 'text/plain; charset=UTF-8');
+})->name('robots');
+
 // Needs Assessment & Consented Enquiry (with rate limiting)
 Route::get('/enquiry', [EnquiryController::class, 'create'])->name('enquiry.create');
 Route::post('/enquiry', [EnquiryController::class, 'store'])->middleware('throttle:enquiry')->name('enquiry.store');
@@ -136,6 +150,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\BillingController::class, 'index'])->name('index');
         Route::get('/orders/{order}', [\App\Http\Controllers\Admin\BillingController::class, 'show'])->name('show');
         Route::post('/orders/{order}/refund', [\App\Http\Controllers\Admin\BillingController::class, 'refund'])->name('refund');
+    });
+
+    // Staff Editorial & Content Freshness Queue
+    Route::middleware('role:case_manager,admin')->prefix('admin/articles')->name('admin.articles.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ArticleController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('store');
+        Route::get('/{article}/edit', [\App\Http\Controllers\Admin\ArticleController::class, 'edit'])->name('edit');
+        Route::put('/{article}', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('update');
+        Route::post('/{article}/verify', [\App\Http\Controllers\Admin\ArticleController::class, 'markVerified'])->name('verify');
     });
 });
 

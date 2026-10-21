@@ -1,4 +1,16 @@
-<x-layout.app title="Explore Verified Business Opportunities — Franchise Dekho">
+<x-layout.app 
+    title="Explore Verified Business Opportunities — Franchise Dekho"
+    metaDescription="Discover audited Indian franchise, dealership, and distributor opportunities. Independent corporate entity verification, itemized CapEx, and territory status."
+    :canonical="route('opportunities.index')"
+>
+    <!-- Breadcrumb Navigation -->
+    <x-ui.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => url('/')],
+        ['label' => 'Opportunities']
+    ]">
+        <span class="w-1.5 h-1.5 rounded-full bg-status-verified-text"></span>
+        <span class="text-xs text-ink-muted">Server-Rendered Index</span>
+    </x-ui.breadcrumbs>
     <!-- Header Band on Warm Paper -->
     <section class="bg-surface-paper border-b border-border-subtle py-10 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

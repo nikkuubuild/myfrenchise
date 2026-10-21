@@ -9,6 +9,10 @@ use Illuminate\View\View;
 
 class OpportunityController extends Controller
 {
+    public function __construct(
+        protected \App\Services\SeoService $seoService
+    ) {}
+
     /**
      * Display a filterable catalog of verified business opportunities.
      */
@@ -88,6 +92,8 @@ class OpportunityController extends Controller
             abort(404, 'This opportunity is not currently approved for publication.');
         }
 
-        return view('opportunities.show', compact('opportunity'));
+        $schema = $this->seoService->opportunitySchema($opportunity);
+
+        return view('opportunities.show', compact('opportunity', 'schema'));
     }
 }

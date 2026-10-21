@@ -1,4 +1,4 @@
-<x-layout.app title="Grievance Redressal &amp; Fraud Queue — Staff Operations">
+<x-layout.app title="Grievance Redressal &amp; Fraud Queue — Staff Operations" robots="noindex, nofollow">
     <section class="bg-surface-paper border-b border-border-subtle py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">

@@ -165,5 +165,8 @@ class DatabaseSeeder extends Seeder
 
         // 4. Seed Service Packages for Transparent Commerce
         $this->call(ServicePackageSeeder::class);
+
+        // 5. Seed Authoritative Due Diligence Guides
+        $this->call(ArticleSeeder::class);
     }
 }

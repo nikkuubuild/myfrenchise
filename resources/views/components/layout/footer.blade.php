@@ -18,6 +18,7 @@
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-ink-primary mb-3">Discovery</h3>
                 <ul class="space-y-2 text-sm text-ink-secondary">
                     <li><a href="{{ url('/opportunities') }}" class="hover:text-ink-primary transition-colors">All Opportunities</a></li>
+                    <li><a href="{{ route('guides.index') }}" class="hover:text-ink-primary transition-colors">Due Diligence Guides</a></li>
                     <li><a href="{{ url('/how-it-works') }}" class="hover:text-ink-primary transition-colors">How It Works</a></li>
                     <li><a href="{{ url('/enquiry') }}" class="hover:text-ink-primary transition-colors">Assisted Search</a></li>
                 </ul>
@@ -47,6 +48,8 @@
                 <p>&copy; {{ date('Y') }} Franchise Dekho. All rights reserved.</p>
                 <div class="flex items-center gap-4">
                     <span>Hostinger Shared Optimized</span>
+                    <span>&bull;</span>
+                    <a href="{{ url('/sitemap.xml') }}" class="hover:underline">XML Sitemap</a>
                     <span>&bull;</span>
                     <a href="{{ url('/health') }}" class="hover:underline">System Status</a>
                 </div>
