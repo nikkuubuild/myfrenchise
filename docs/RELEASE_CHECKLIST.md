@@ -135,14 +135,13 @@ php artisan key:generate --force
 composer install --no-dev --optimize-autoloader --no-interaction
 ```
 
-### Step 5: Run Database Migrations
+### Step 5: Run Database Migrations & Automated Baseline Data Sync
 ```bash
-php artisan migrate --force
+php artisan app:update-db --force
+# Or standard migration (migration 2026_10_21_210000 automatically seeds baseline data if fresh):
+# php artisan migrate --force
 ```
-*(Optional initial seed for reference categories and permissions if fresh deployment):*
-```bash
-# Only run on fresh deployment if master data is required:
-# php artisan db:seed --class=CategorySeeder --force
+Baseline reference categories, verified sample opportunities across sectors (F&B, Logistics, Healthcare), service packages, knowledge hub articles, and staff accounts are automatically populated and synced idempotently.
 ```
 
 ### Step 6: Deploy Public Assets to `public_html`

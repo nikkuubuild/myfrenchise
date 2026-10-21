@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\RateLimiter;
 use Tests\TestCase;
 
 class SecurityBaselineTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * Test enterprise security headers are enforced on all web responses.
      */
